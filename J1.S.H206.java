@@ -1,58 +1,65 @@
 package j1.s.h206;
 
+import static java.lang.System.err;
 import java.util.Scanner;
+
 
 public class J1SH206 {
 
     static final Scanner sc = new Scanner(System.in);
-    public static void printSquare(int min, int max){
-        int count = 0;
-        int count1 = min;
-        
-        for (int j = 0; j < max-count1+1; j++) {
+
+    public static int checkINP(String mess, int min, int max) {
+        int input;
+        do {
+            try {
+                System.out.println(mess);
+                input = Integer.parseInt(sc.nextLine());
+                if (input >= min && input <= max) {
+                    return input;
+                } else {
+                    System.out.println("Please Enter Again: ");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Enter again!: ");
+            }
+        } while (true);
+    }
+
+    public static void Input() {
+        do {
+            try {
+                int min = checkINP("Enter min: ", Integer.MIN_VALUE, Integer.MAX_VALUE);
+                int max = checkINP("Enter max: ", min, Integer.MAX_VALUE);
+                printSquare(min, max);
+                return;
+            } catch (NumberFormatException ex) {
+                System.out.println("You should follow input: " + Integer.MIN_VALUE + " to " + Integer.MAX_VALUE + " and min>max");
+            }
+        } while (true);
+    }
+
+    public static void printSquare(int min, int max) {
+        int countmin = min;
+        for (int j = 0; j <= max - countmin; j++) {
             //In tu min -> max
             for (int i = min; i <= max; i++) {
                 System.out.print(i);
-                count = count + 1;
-
             }
             //In phan min bi thieu
-            for (int i = count1; i < min; i++) {
-                System.out.print(i);
-                count = count + 1;
+            for (int k = countmin; k < min; k++) {
+                System.out.print(k);
             }
             //Neu count = max thi xuong dong va reset count
-            if (count == max) {
-                System.out.println();
-                count = 0;
-            }
+
+            System.out.println();
+
             //Tang min len
             min = min + 1;
         }
+    }
 
-    }
-    
-// Cach cua Hoan
-//        int count = min;
-//        //Chay tu 0->max-count-1
-//        for (int i = 0; i < max-count+1; i++) {
-//            //In tu min->max
-//            for (int j = min; j <= max; j++) {
-//                System.out.print(j);
-//            }
-//            //In phan min bi thieu
-//            for (int j = count; j < min; j++) {
-//                System.out.print(j);
-//            }
-//            //Xuong dong va tang min len 1.
-//            System.out.println();
-//            min = min + 1;
-//        }
-//    }
-    
     public static void main(String[] args) {
-        printSquare(1,5); //
-        
+        Input();
     }
-    
+
 }
