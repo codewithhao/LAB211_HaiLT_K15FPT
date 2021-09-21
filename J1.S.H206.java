@@ -1,6 +1,5 @@
 package j1.s.h206;
 
-import static java.lang.System.err;
 import java.util.Scanner;
 
 
@@ -14,6 +13,7 @@ public class J1SH206 {
             try {
                 System.out.println(mess);
                 input = Integer.parseInt(sc.nextLine());
+                //Neu min <= input <= max thi nhan gia tri
                 if (input >= min && input <= max) {
                     return input;
                 } else {
@@ -24,7 +24,8 @@ public class J1SH206 {
             }
         } while (true);
     }
-
+    
+    //Ham check min va max thuoc khoang duoc xac dinh.
     public static void Input() {
         do {
             try {
