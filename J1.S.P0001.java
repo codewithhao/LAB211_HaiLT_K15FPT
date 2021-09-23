@@ -7,28 +7,25 @@ public class J1SP0001 {
 
     private static final Scanner sc = new Scanner(System.in);
 
-    private static int checkInput() {
-        while (true) {
+     public static int checkINP(String mess, int min, int max) {
+        int input;
+        do {
             try {
-                int input = Integer.parseInt(sc.nextLine());
-                if (input <= 0) {
-                    System.out.println("Please enter input > 0");
-                    continue;
+                System.out.print(mess);
+                input = Integer.parseInt(sc.nextLine());
+                if (input >= min && input <= max) {
+                    return input;
+                } else {
+                    System.out.println("Please Enter Again: ");
                 }
-                return input;
             } catch (NumberFormatException e) {
-                System.out.println("Please enter number");
-                System.out.print("Enter again: ");
-            } catch (NegativeArraySizeException e) {
-                System.out.println("Please enter number");
-                System.out.print("Enter again: ");
+                System.out.println("Enter again!: ");
             }
-        }
+        } while (true);
     }
 
     private static int checkSizeArray() {
-        System.out.println("Enter number of array: ");
-        int n = checkInput();
+        int n = checkINP("Enter number of array: ", 1, Integer.MAX_VALUE);
         return n;
     }
 
